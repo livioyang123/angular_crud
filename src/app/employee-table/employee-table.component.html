@@ -1,0 +1,45 @@
+<table *ngIf="data">
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Gender</td>
+        <td>id</td>
+    </tr>
+    <tr *ngFor="let item of data._embedded.employees">
+        <td>{{item.firstName}}</td>
+        <td>{{item.lastName}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.id}}</td>
+        <button (click)='delete(item.id)'>delete</button>
+        <button [disabled]="isDisabled_update" (click)='modified(item.id,item.firstName,item.lastName)'>modified</button>
+        
+    </tr>
+</table>
+<button (click)='changePage(-1)'>precedente</button>
+<button (click)='changePage(1)'>prossimo</button>
+<button [disabled]="isDisabled_add" (click)="to_add()">add employee</button>
+
+
+<div *ngIf='display_update'>
+    <hr>
+    <label>nome:</label>
+    <input type="text" [(ngModel)]="nome" required>
+    <label>cognome:</label>
+    <input type="text" [(ngModel)]="cognome" required>
+    <button (click)="update()">update</button>
+</div>
+
+
+
+<div *ngIf='display_add' >
+    <hr>
+    <label>nome:</label>
+    <input type="text" [(ngModel)]="nome" >
+    <label>cognome:</label>
+    <input type="text" [(ngModel)]="cognome" >
+    <button (click)="add()">add</button>
+</div>
+
+
+
+
